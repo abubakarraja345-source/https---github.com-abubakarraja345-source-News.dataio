@@ -1,14 +1,11 @@
 export default async function handler(req, res) {
-  const API_KEY = process.env.NEWS_API_KEY;
   const { category, q } = req.query;
 
-  let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`;
-
-  if (category) {
-    url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`;
-  } else if (q) {
-    url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${API_KEY}`;
-  }
+  const url = new URL("https://newsdata.io/api/1/news");
+  url.searchParams.append("apikey", process.env.NEWS_API_KEY);
+  url.searchParams.append("country", "pk");
+  if (category) url.searchParams.append("category", category);
+  if (q) url.searchParams.append("q", q);
 
   try {
     const response = await fetch(url);
