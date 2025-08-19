@@ -1,22 +1,23 @@
-const API_KEY = "pub_92d8f9481fe04a7fbb2d5c93f9bd1c9f"; 
+const API_KEY = "NEWS_API_KEY"; 
 const newsContainer = document.getElementById("news-container");
 const searchInput = document.getElementById("searchInput");
 const themeToggle = document.getElementById("themeToggle");
 
 async function fetchNews() {
-  const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&country=pk`;
+  const url = `/api/news`; 
   loadNews(url);
 }
 
+
 async function fetchCategory(category) {
-  const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&country=pk&category=${category}`;
+  const url = `/api/news?category=${category}`;
   loadNews(url);
 }
 
 async function searchNews() {
   const query = searchInput.value.trim();
   if (!query) return;
-  const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&q=${query}`;
+  const url = `/api/news?q=${query}`;
   loadNews(url);
 }
 
