@@ -4,7 +4,7 @@ const searchInput = document.getElementById("searchInput");
 const themeToggle = document.getElementById("themeToggle");
 
 async function fetchNews() {
-  const url = `/api/news`; 
+const url = `https://newsapi.org/v2/top-headlines?apiKey=${API_KEY}`;
   loadNews(url);
 }
 
